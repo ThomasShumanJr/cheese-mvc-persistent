@@ -1,7 +1,6 @@
 package org.launchcode.controllers;
 
 import org.launchcode.models.Cheese;
-import org.launchcode.models.CheeseType;
 import org.launchcode.models.data.CheeseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +37,7 @@ public class CheeseController {
     public String displayAddCheeseForm(Model model) {
         model.addAttribute("title", "Add Cheese");
         model.addAttribute(new Cheese());
-        model.addAttribute("cheeseTypes", CheeseType.values());
+        model.addAttribute("category", );
         return "cheese/add";
     }
 
@@ -63,10 +62,11 @@ public class CheeseController {
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveCheeseForm(@RequestParam int[] cheeseIds) {
+    public String processAddCheeseForm(@ModelAttribute  @Valid Cheese newCheese, Errors errors,
+                                       @RequestParam int categoryId, Model model) {
 
-        for (int cheeseId : cheeseIds) {
-            cheeseDao.delete(cheeseId);
+        for (int categoryId : categoryId) {
+            cheeseDao.delete(categoryId);
         }
 
         return "redirect:";
